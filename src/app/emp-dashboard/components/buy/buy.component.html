@@ -1,0 +1,60 @@
+<div id="buy-root">
+    <mat-card>
+      <mat-card-title>
+        Buy GHS
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="buyGHSForm">
+          <mat-form-field>
+            <input #firstNameControl formControlName="firstNameControl" matInput placeholder="First Name" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input #lastNameControl formControlName="lastNameControl" matInput placeholder="Last Name" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <input #IDTypeControl formControlName="IDTypeControl" matInput placeholder="ID Type"> -->
+            <select #IDTypeControl formControlName="IDTypeControl" matNativeControl placeholder="ID Type" required >
+              <option value="passport">Passport</option>
+              <option value="nationalID">National ID</option>
+              <option value="voters">Voters ID</option>
+              <option value="drivers">Drivers License</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <input #IDNumberControl formControlName="IDNumberControl" matInput placeholder="ID Number" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <input #currencyControl formControlName="currencyControl" matInput placeholder="Currency"> -->
+            <select #currencyControl formControlName="currencyControl" matNativeControl placeholder="Currency being sold"
+              required>
+              <option value="dollars">Dollars</option>
+              <option value="euros">Euros</option>
+              <option value="pounds">Pounds</option>
+              <option value="sar">South African Rand</option>
+              <option value="can">Canadian Dollars</option>
+              <option value="cfa">West African CFA Franc</option>
+              <option value="sw_fr">Swiss Franc</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <input #amountControl formControlName="amountControl" matInput placeholder="Amount of Currency being sold" type="number">
+          </mat-form-field>
+          <div>
+              <h3>Exchange Rate: {{rates[currencyControl.value]}}</h3> 
+              <br>
+              <h3> Cedis to collect: {{(rates[currencyControl.value] * amountControl.value) || 0}}</h3>
+          </div>
+          
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="clearForm()" >
+          Clear Form
+        </button>
+        <button mat-button  (click)="submitForm(buyGHSForm.value)" >
+          Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

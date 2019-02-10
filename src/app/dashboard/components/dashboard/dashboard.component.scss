@@ -1,0 +1,48 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+#dashboard-root {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+
+  #toolbar-span {
+    text-align: right;
+    font-size: 0.7em;
+    flex: 1 1 auto;
+  }
+
+  #toolbar-buttons {
+    p {
+      color: white;
+    }
+  }
+
+  #content-wrapper {
+    flex: 1;
+
+    mat-sidenav-container {
+      height: 100%;
+      background-color: transparent;
+
+      mat-sidenav {
+        color: whitesmoke;
+        background: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.7));
+        background: #662d91;
+        ;
+
+        a, mat-icon {
+          color: whitesmoke;
+        }
+      }
+
+      mat-sidenav-content {
+        padding: 10px;
+      }
+    }
+  }
+}

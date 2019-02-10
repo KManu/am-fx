@@ -1,0 +1,25 @@
+#app-root {
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+  
+    #outlet-wrapper {
+      flex: 1;
+      height: 100%;
+      width: 100%;
+      order: 1;
+      display: flex;
+      justify-content: center;
+    }
+  
+    #footer-wrapper {
+      width: 100%;
+      align-self: center;
+      order: 2;
+    }
+  }
+  

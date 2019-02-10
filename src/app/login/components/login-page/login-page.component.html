@@ -1,0 +1,27 @@
+<div id="login-root">
+  <div id="loginContainer">
+    <mat-card>
+      <mat-card-title>
+        AM-Forex
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-card-content>
+        <form [formGroup]="loginForm">
+          <mat-form-field>
+            <input #emailControl formControlName="emailControl" matInput placeholder="Username">
+            <mat-icon matSuffix (click)="emailControl.value = '' ">close</mat-icon>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input #passControl formControlName="passControl" matInput placeholder="Password" [type]="passHide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="passHide = !passHide">{{passHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions align="right">
+        <button mat-button (click)="login(loginForm.value)">Login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
