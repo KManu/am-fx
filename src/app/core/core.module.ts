@@ -9,7 +9,6 @@ import { StateService } from './services/state.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 
 // Externals
-import { MomentModule } from 'ngx-moment';
 
 
 
@@ -18,10 +17,8 @@ import { MomentModule } from 'ngx-moment';
   declarations: [],
   imports: [
     CommonModule,
-    MomentModule,
   ],
   exports: [
-    MomentModule,
   ],
   providers: [
     StateService,

@@ -1,20 +1,25 @@
+const host = 'http://localhost:8001/';
+
 const URLS = {
-  login: {
-    loginURL: 'https://teamcyst.com:8022/login',
+  users : {
+    login: host + 'users/login',
+    create: host + 'users/create'
   },
-  home: {},
-  accounts: {
-    getAccounts: 'https://teamcyst.com:8022/getAccounts'
+  organisation: {
+    createOrganisation: host + 'organisations/create',
+    getDetailsByCode: host + 'organisations/getOrganisationByCode',
+    getAll: host + 'organisations/getAll'
   },
-  businesses: {},
-  verified_users: {
-    getVerifiedUsers: 'https://teamcyst.com:8022/getVerifiedUsers',
+  currencies: {
+    get: host + 'currencies/get',
+    getByOrg: host + 'currencies/getByOrg',
+    upsert: host + 'currencies/upsert'
   },
-  contact_persons: {},
-  transactions: {},
-  promo_items: {},
-  promo_messages: {},
-  messages: {}
+  transactions: {
+    create: host + 'transactions/create',
+    getOrgTransactions: host + 'transactions/getOrgTransactions',
+    getUserTransactions: host + 'transactions/getByID'
+  },
 };
 
 

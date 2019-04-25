@@ -1,14 +1,42 @@
-#login-root{
-    height: 100%;
+:host{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
 
-    #loginContainer{
-        height: auto;
+    #login-root{
+        height: 100%;
         width: 100%;
-    }
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
 
+        mat-toolbar{
+            align-self: flex-start;
+
+            mat-toolbar-row{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+
+                #toolbarTitle{
+                    flex: 1;
+                    justify-self: start;
+                }
+
+                .horizontalFiller{
+                    flex: 1;
+                }
+
+            }
+        }
+    
+        #loginContainer{
+            height: 100%;
+            align-self: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    
+    }
 }

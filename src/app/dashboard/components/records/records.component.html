@@ -1,0 +1,123 @@
+<div id="records_root">
+  <mat-toolbar>
+    <span id="titleGroup">
+      <span id="title">Records</span>
+      <mat-button-toggle-group [value]="dataType" #typeGroup="matButtonToggleGroup" (change)="toggleType(typeGroup.value)" >       
+          <mat-button-toggle value="buy">Purchases</mat-button-toggle>
+        <mat-button-toggle value="sell">Sales</mat-button-toggle>
+      </mat-button-toggle-group>
+    </span>
+    <span id="toolbarButtons">
+      <mat-form-field appearance="legacy" class="tableSearch">
+        <mat-label>Search</mat-label>
+        <input (keyup)="searchTable($event.target.value)" (blur)="searchTable($event.target.value)" matInput
+          placeholder="Placeholder">
+      </mat-form-field>
+      <button mat-stroked-button (click)="loadTableData()">Refresh</button>
+      <button mat-stroked-button [matMenuTriggerFor]="exportMenu">Export</button>
+      <mat-menu #exportMenu="matMenu">
+        <button mat-menu-item (click)="exportAsExcel()">Export as Excel</button>
+      </mat-menu>
+    </span>
+  </mat-toolbar>
+  <div id="mainContent">
+    <div id="tableWrapper" #tableWrapper>
+      <table mat-table matSort [dataSource]="dataSource">
+
+        <!-- Details Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.full_name}}
+
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="full_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+        </ng-container>
+
+        <!-- Time Column -->
+        <ng-container matColumnDef="timestamp">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.timestamp | date:'d/M/yyyy, h:mm: a' }} </td>
+        </ng-container>
+
+
+        <!-- Receipt ID Column -->
+        <ng-container matColumnDef="receipt_id">
+          <th mat-header-cell *matHeaderCellDef> Receipt ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.receipt_id}} </td>
+        </ng-container>
+
+        <!-- Currency Column -->
+        <ng-container matColumnDef="currency_code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency_code}} </td>
+        </ng-container>
+
+        <!-- Currency Name -->
+        <ng-container matColumnDef="currency_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency_name}} </td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount | currency: 'GHS'}} </td>
+        </ng-container>
+
+        <!-- Rate Column -->
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+          <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id_type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id_number">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="home_country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Home <br> Country </th>
+          <td mat-cell *matCellDef="let element"> {{element.home_country}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="residential_address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Residential Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.residential_address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="post_address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Post Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.post_address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="teller_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Teller ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.teller_id}} </td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef> Created </th>
+          <td mat-cell *matCellDef="let element"> {{element.created | date:'d/M/yyyy, h:mm: a'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
+  </div>
+</div>

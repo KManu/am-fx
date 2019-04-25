@@ -17,20 +17,5 @@ export class AccountsService {
     private localStorage: LocalStorage
   ) { }
 
-  getAccounts() {
-    return this.http.get(URLS.accounts.getAccounts)
-      .pipe(
-        map((res) => {
-          return this.localStorage.setItem('mazdash-accounts', res).subscribe(() => { });
-        }),
-        map((res) => {
-          return true;
-        }),
-        catchError((err: any) => {
-          console.log('Login http Error: ', err.error);
-          return throwError(err);
-        })
-      );
-  }
 
 }

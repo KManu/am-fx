@@ -22,20 +22,26 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
-    "@ngx-pwa/local-storage": "^7.2.0",
+    "@ngx-pwa/local-storage": "^7.4.2",
+    "@swimlane/ngx-charts": "^10.1.0",
     "@swimlane/ngx-datatable": "^14.0.0",
     "core-js": "^2.5.4",
+    "dayjs": "^1.8.11",
+    "jsonwebtoken": "^8.5.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "ngx-moment": "^3.2.0",
+    "mysql2": "^1.6.5",
     "ngx-toastr": "^9.1.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "rxjs": "~6.3.3",
+    "xlsx": "^0.14.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.1",
     "@angular/cli": "~7.0.6",
-    "@angular/compiler-cli": "~7.0.0",
+    "@angular/compiler-cli": "^7.2.6",
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
@@ -51,6 +57,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.6"
+    "typescript": "^3.1.6"
   }
 }

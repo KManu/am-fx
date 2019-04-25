@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./buy.component.scss']
 })
 export class BuyComponent implements OnInit {
+
   public buyGHSForm: FormGroup;
 
   currencyRate = 0;

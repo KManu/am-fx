@@ -6,7 +6,8 @@ import {
   MatInputModule,
   MatCardModule,
   MatDividerModule,
-  MatIconModule
+  MatIconModule,
+  MatToolbarModule
 } from '@angular/material';
 
 /* Commonly shared UI components */
@@ -19,7 +20,8 @@ import {
     MatInputModule,
     MatCardModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   exports: [
     MatButtonModule,
@@ -27,7 +29,8 @@ import {
     MatInputModule,
     MatCardModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
 })
 export class SharedMaterialModule { }

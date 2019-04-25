@@ -1,47 +1,43 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardMaterialModule } from './dashboard-material/dashboard-material.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DailiesComponent } from './components/dailies/dailies.component';
-import { ExpensesComponent } from './components/expenses/expenses.component';
 import { CurrenciesComponent } from './components/currencies/currencies.component';
-import { BalanceSheetsComponent } from './components/balance-sheets/balance-sheets.component';
-import { SalariesComponent } from './components/salaries/salaries.component';
-import { MobileMoneyComponent } from './components/mobile-money/mobile-money.component';
-// Services
-import { AccountsService } from './services/accounts.service';
-import { VerifiedUsersService } from './services/verified-users.service';
+
+// Dashboard Shared
+import { DashboardSharedModule } from '../dashboard-shared/dashboard-shared.module';
 
 // Externals
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { BuyComponent } from './components/buy/buy.component';
+import { SellComponent } from './components/sell/sell.component';
+import { RecordsComponent } from './components/records/records.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    DailiesComponent,
-    ExpensesComponent,
     CurrenciesComponent,
-    BalanceSheetsComponent,
-    SalariesComponent,
-    MobileMoneyComponent
+    BuyComponent,
+    SellComponent,
+    RecordsComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     DashboardMaterialModule,
-    NgxDatatableModule
+    ReactiveFormsModule,
+    DashboardSharedModule
   ],
   exports: [
     DashboardComponent,
-    NgxDatatableModule
   ],
   providers: [
-    AccountsService,
-    VerifiedUsersService
   ]
 })
 export class DashboardModule { }

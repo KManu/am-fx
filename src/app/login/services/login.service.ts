@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, of } from 'rxjs';
-import { map, catchError, retry, flatMap } from 'rxjs/operators';
+import { map, catchError, retry, flatMap, switchMap } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { URLS } from '../../core/services/constants.service';
 import { StateService } from '../../core/services/state.service';
@@ -20,26 +20,41 @@ export class LoginService {
 
   login(payload) {
     /* {username: "admin", password: "12345"} */
-    if (payload.username === 'admin' && payload.password === '12345') {
+    /* if (payload.username === 'admin' && payload.password === '12345') {
       return of({ user: 'admin' });
     } else if (payload.username === 'kwaku' && payload.password === 'abcde') {
       return of({ user: 'teller' });
     } else {
       return throwError(false);
-    }
-    /* return this.http.post(URLS.login.loginURL, payload)
+    } */
+    let user;
+    return this.http.post(URLS.users.login, payload)
       .pipe(
         map((res) => {
           console.log(res);
-          if (res['status'] === true) {
-            this.localStorage.setItem('token', res['token']).subscribe(() => { });
+          if (res['status'] === false) {
+            throwError(false);
+          } else {
+            user = res['data'][0];
+            return res;
           }
-          return true;
+        }),
+        switchMap((res) => {
+          return this.localStorage.setItem('am-token', res['token']);
+        }),
+        switchMap(res => {
+          return this.localStorage.setItem('am-user', user);
+        }),
+        map(res => {
+          return {
+            org: user.organisation_code || '',
+            role: user.role || ''
+          };
         }),
         catchError((err: any) => {
           console.log('Login http Error: ', err.error);
           return throwError(err);
         })
-      ); */
+      );
   }
 }

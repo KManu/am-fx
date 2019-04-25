@@ -1,7 +1,6 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { ToastrService } from 'ngx-toastr';
-import * as moment from 'ngx-moment';
 
 @Component({
   selector: 'app-dailies',
@@ -10,69 +9,6 @@ import * as moment from 'ngx-moment';
 })
 export class DailiesComponent implements OnInit {
 
-  rows = [];
-  columns = [
-    {
-      name: 'Time',
-      prop: 'time',
-      pipe: { transform: this.datePipe},
-      flexGrow: 1
-    },
-    {
-      name: 'Type',
-      prop: 'type',
-      flexGrow: 1
-    },
-    {
-      name: 'First Name',
-      prop: 'firstNameControl',
-      flexGrow: 1
-    },
-    {
-      name: 'Last Name',
-      prop: 'lastNameControl',
-      flexGrow: 1
-    },
-    {
-      name: 'ID Type',
-      prop: 'IDTypeControl',
-      flexGrow: 1
-    },
-    {
-      name: 'ID Number',
-      prop: 'IDNumberControl',
-      flexGrow: 1
-    },
-    {
-      name: 'Amount',
-      prop: 'amountControl',
-      flexGrow: 1
-    },
-    {
-      name: 'First Name',
-      prop: 'firstNameControl',
-      flexGrow: 1
-    },
-  ];
-
-  /* columns = [
-    {
-      name: 'Currency',
-      prop: 'firstNameControl'
-    },
-    {
-      name: 'Amount',
-      prop: 'firstNameControl'
-    },
-    {
-      name: 'Rate',
-      prop: 'firstNameControl'
-    },
-    {
-      name: 'Total',
-      prop: 'firstNameControl'
-    },
-  ]; */
 
   /* IDNumberControl: "12345"
   IDTypeControl: "voters"
@@ -93,7 +29,6 @@ export class DailiesComponent implements OnInit {
       .subscribe(
         next => {
           console.log('Records: ', next);
-          this.rows = [...next];
         },
         error => {
           console.log('Error: ', error);
@@ -104,7 +39,10 @@ export class DailiesComponent implements OnInit {
   datePipe(value: any, ...args: any[]) {
     // return moment(value).toLocaleString();
     return new Date(value).toLocaleString('en-UK');
-}
+  }
+
+  exportAsExcel() {}
+  loadTableData() {}
 
 
 

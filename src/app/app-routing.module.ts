@@ -9,6 +9,19 @@ const routes: Routes = [
     component: LoginPageComponent
   },
   {
+    path: '*',
+    component: LoginPageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: 'am-dash',
+    loadChildren: './am-dash/am-dash.module#AmDashModule'
+    // canActivate: [RGuardService]
+  },
+  {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
     // canActivate: [RGuardService]
@@ -16,6 +29,11 @@ const routes: Routes = [
   {
     path: 'emp-dashboard',
     loadChildren: './emp-dashboard/emp-dashboard.module#EmpDashboardModule'
+    // canActivate: [RGuardService]
+  },
+  {
+    path: 'sign-up',
+    loadChildren: './sign-up/sign-up.module#SignUpModule'
     // canActivate: [RGuardService]
   }
 ];

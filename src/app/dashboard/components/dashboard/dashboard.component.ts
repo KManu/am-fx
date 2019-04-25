@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { interval } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
+import * as advancedFormat from 'dayjs/plugin/advancedFormat';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,17 +16,15 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router
   ) {
+    dayjs.extend(advancedFormat);
     // init outlet route
-    router.navigate(['/dashboard/dailies']);
+    router.navigate(['/dashboard/reports']);
   }
 
   ngOnInit() {
-    interval(1000)
-      .pipe(
-        map(e => {
-          this.dateTime = moment().format('dddd, MMMM Do YYYY, h:mm:ss A');
-        })
-      ).subscribe();
+    setInterval((() => {
+      this.dateTime = dayjs().format('dddd, MMMM Do YYYY, h:mm:ss A');
+    }), 1000);
   }
 
   logout() {

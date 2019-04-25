@@ -17,21 +17,4 @@ export class VerifiedUsersService {
     private stateService: StateService,
     private localStorage: LocalStorage
   ) { }
-
-  getVerifiedUsers() {
-    return this.http.get(URLS.verified_users.getVerifiedUsers)
-      .pipe(
-        map((res) => {
-          // console.log(res);
-          return this.localStorage.setItem('mazdash-verified', res).subscribe(() => { });
-        }),
-        map((res) => {
-          return true;
-        }),
-        catchError((err: any) => {
-          console.log('Login http Error: ', err.error);
-          return throwError(err);
-        })
-      );
-  }
 }

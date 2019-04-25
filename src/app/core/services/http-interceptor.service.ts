@@ -12,7 +12,7 @@ import { flatMap, catchError } from 'rxjs/operators';
 })
 export class HttpInterceptorService implements HttpInterceptor {
   private token: string;
-  private re = /login/gi;
+  private re = /login/gi; // regex for loing route
 
 
   constructor(
@@ -27,7 +27,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         .pipe(
           flatMap(e => {
             // this.token = e;
-            const modified = req.clone({ setHeaders: { 'Authorization': (e || '') } });
+            const modified = req.clone({ setHeaders: { 'Authorization': ('Bearer ' + e || '') } });
             return next.handle(modified);
           }),
           catchError((err: any) => {

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DailiesComponent } from './components/dailies/dailies.component';
-import { ExpensesComponent } from './components/expenses/expenses.component';
-import { CurrenciesComponent } from './components/currencies/currencies.component';
-import { BalanceSheetsComponent } from './components/balance-sheets/balance-sheets.component';
-import { SalariesComponent } from './components/salaries/salaries.component';
-import { MobileMoneyComponent } from './components/mobile-money/mobile-money.component';
+import { BuyComponent } from './components/buy/buy.component';
+import { SellComponent } from './components/sell/sell.component';
+import { RecordsComponent } from './components/records/records.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 const routes: Routes = [
   {
@@ -14,28 +12,20 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'dailies',
-        component: DailiesComponent
+        path: 'records',
+        component: RecordsComponent
       },
       {
-        path: 'expenses',
-        component: ExpensesComponent
+        path: 'buy',
+        component: BuyComponent
       },
       {
-        path: 'currencies',
-        component: CurrenciesComponent
+        path: 'sell',
+        component: SellComponent
       },
       {
-        path: 'balance-sheets',
-        component: BalanceSheetsComponent
-      },
-      {
-        path: 'salaries',
-        component: SalariesComponent
-      },
-      {
-        path: 'mobile-money',
-        component: MobileMoneyComponent
+        path: 'reports',
+        component: ReportsComponent
       }
     ]
   },

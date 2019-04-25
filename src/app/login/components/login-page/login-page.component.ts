@@ -39,20 +39,38 @@ export class LoginPageComponent implements OnInit {
     console.log('Login clicked.');
     console.log(payload);
     const data = {
-      username: payload.emailControl || '',
+      email: payload.emailControl || '',
       password: payload.passControl || ''
     };
     this.loginService.login(data)
       .subscribe(
         next => {
           console.log('Login res: ', next);
-          if (next.user === 'admin') {
+          if (next.org === '' || next.role === '') {
+            // throw
+            this.toastr.error('Login failed.');
+          } else if (next.org === 'kuSfwu24t') {
+            if (next.role === 'admin') {
+              // am login
+              this.router.navigate(['/', 'am-dash']);
+            } else if (next.role !== 'admin') {
+              this.router.navigate(['/', 'emp-dashboard']);
+            }
+          } else {
+            if (next.role === 'admin') {
+              // am login
+              this.router.navigate(['/', 'dashboard']);
+            } else if (next.role !== 'admin') {
+              this.router.navigate(['/', 'emp-dashboard']);
+            }
+          }
+          /* if (next.user === 'admin') {
             this.toastr.success('Login Successful', '');
             this.router.navigate(['/', 'dashboard']);
           } else {
             this.toastr.success('Login Successful', '');
             this.router.navigate(['/', 'emp-dashboard']);
-          }
+          } */
 
         },
         err => {

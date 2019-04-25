@@ -11,6 +11,11 @@ import {
   MatListModule,
   MatExpansionModule,
   MatInputModule,
+  MatSortModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatButtonToggleModule,
+  MatProgressBarModule,
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -26,8 +31,13 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatSortModule,
     MatExpansionModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatProgressBarModule,
     LayoutModule
   ],
   exports: [
@@ -37,10 +47,15 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatSortModule,
     MatSidenavModule,
     MatListModule,
     MatExpansionModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatProgressBarModule,
     LayoutModule
   ]
 })

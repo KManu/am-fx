@@ -7,10 +7,10 @@
           <mat-icon aria-label="Menu Button">menu</mat-icon>
         </button>
       </div>
-      <p>AM-Forex Prototype. Welcome Admin</p>
+      <p>Ex Hub.</p>
       <span id="toolbar-span"> {{dateTime}} </span>
       <div id="toolbar-buttons">
-        <button mat-button (click)="logout()">Logout</button>
+        <button mat-stroked-button (click)="logout()">Logout</button>
       </div>
     </mat-toolbar>
   </div>
@@ -19,29 +19,21 @@
       <mat-sidenav mode="side" #sideNav opened>
         <mat-list>
           <mat-list-item>
-            <mat-icon>today</mat-icon>
-            <a routerLink="/dashboard/dailies" routerLinkActive="active" mat-button>Dailies</a>
-          </mat-list-item>
-          <!--<mat-list-item>
-            <mat-icon>shopping_cart</mat-icon>
-            <a routerLink="/dashboard/expenses" routerLinkActive="active" mat-button>Expenses</a>
+            <mat-icon>folder</mat-icon>
+            <a routerLink="/dashboard/records" routerLinkActive="active" mat-button>Records</a>
           </mat-list-item>
           <mat-list-item>
-            <mat-icon>attach_money</mat-icon>
-            <a routerLink="/dashboard/currencies" routerLinkActive="active" mat-button>Currency stock</a>
-          </mat-list-item>
-           <mat-list-item>
-            <mat-icon>business</mat-icon>
-            <a routerLink="/dashboard/balance-sheets" routerLinkActive="active" mat-button>Balance Sheets</a>
+              <mat-icon>bar_chart</mat-icon>
+              <a routerLink="/dashboard/reports" routerLinkActive="active" mat-button>Reports</a>
+            </mat-list-item>
+          <mat-list-item>
+            <mat-icon>arrow_backward</mat-icon>
+            <a routerLink="/dashboard/sell" routerLinkActive="active" mat-button>Sell GHS</a>
           </mat-list-item>
           <mat-list-item>
-            <mat-icon>people</mat-icon>
-            <a routerLink="/dashboard/salaries" routerLinkActive="active" mat-button>Salaries</a>
+            <mat-icon>arrow_forward</mat-icon>
+            <a routerLink="/dashboard/buy" routerLinkActive="active" mat-button>Buy GHS</a>
           </mat-list-item>
-          <mat-list-item>
-            <mat-icon>smartphone</mat-icon>
-            <a routerLink="/dashboard/mobile-money" routerLinkActive="active" mat-button>Mobile Money</a>
-          </mat-list-item> -->
         </mat-list>
       </mat-sidenav>
       <mat-sidenav-content>
