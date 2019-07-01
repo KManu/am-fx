@@ -1,6 +1,7 @@
 #buy-root{
-    width: 100%;
+    width: 61.8%;
     height: 100%;
+    margin: 0 auto;
 
     mat-toolbar {
       display: flex;
@@ -20,8 +21,8 @@
         justify-content: left;
         align-items: left;
 
-        mat-form-field{
-          width: 63.33%; 
+        .formStats{
+          font-size: 16px;
         }
       }
 }

@@ -1,24 +1,28 @@
 <div id="records_root">
-  <mat-toolbar>
-    <span id="titleGroup">
-      <span id="title">Records</span>
-      <mat-button-toggle-group [value]="dataType" #typeGroup="matButtonToggleGroup" (change)="toggleType(typeGroup.value)" >       
-          <mat-button-toggle value="buy">Purchases</mat-button-toggle>
-        <mat-button-toggle value="sell">Sales</mat-button-toggle>
-      </mat-button-toggle-group>
-    </span>
-    <span id="toolbarButtons">
-      <mat-form-field appearance="legacy" class="tableSearch">
-        <mat-label>Search</mat-label>
-        <input (keyup)="searchTable($event.target.value)" (blur)="searchTable($event.target.value)" matInput
-          placeholder="Placeholder">
-      </mat-form-field>
-      <button mat-stroked-button (click)="loadTableData()">Refresh</button>
-      <button mat-stroked-button [matMenuTriggerFor]="exportMenu">Export</button>
-      <mat-menu #exportMenu="matMenu">
-        <button mat-menu-item (click)="exportAsExcel()">Export as Excel</button>
-      </mat-menu>
-    </span>
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <span id="titleGroup">
+            <span id="title">Records</span>
+            <mat-form-field class="tableSearch">
+              <mat-label>Search</mat-label>
+              <input (keyup)="searchTable($event.target.value)" (blur)="searchTable($event.target.value)" matInput
+                placeholder="Placeholder">
+            </mat-form-field>
+          </span>
+          <span id="toolbarButtons">
+            <mat-button-toggle-group [value]="dataType" #typeGroup="matButtonToggleGroup"
+              (change)="toggleType(typeGroup.value)">
+              <mat-button-toggle value="buy">Purchases</mat-button-toggle>
+              <mat-button-toggle value="sell">Sales</mat-button-toggle>
+            </mat-button-toggle-group>
+            <button mat-stroked-button  (click)="refreshData()">Refresh</button>
+            <button mat-stroked-button [matMenuTriggerFor]="exportMenu">Export</button>
+            <mat-menu #exportMenu="matMenu">
+              <button mat-menu-item (click)="exportAsExcel()">Export as Excel</button>
+            </mat-menu>
+          </span>
+    </mat-toolbar-row>
+    
   </mat-toolbar>
   <div id="mainContent">
     <div id="tableWrapper" #tableWrapper>

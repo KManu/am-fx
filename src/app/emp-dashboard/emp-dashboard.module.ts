@@ -13,7 +13,6 @@ import { MobileMoneyComponent } from './components/mobile-money/mobile-money.com
 
 // Services
 import { AccountsService } from './services/accounts.service';
-import { VerifiedUsersService } from './services/verified-users.service';
 
 // Externals
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -44,7 +43,6 @@ import { BuyComponent } from './components/buy/buy.component';
   ],
   providers: [
     AccountsService,
-    VerifiedUsersService
   ]
 })
 export class EmpDashboardModule { }

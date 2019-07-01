@@ -1,85 +1,82 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
 
 $md-gold: (
-    50 : #fdfdf6,
-    100 : #fbfae7,
-    200 : #f8f6d8,
-    300 : #f5f2c8,
-    400 : #f3f0bc,
-    500 : #f1edb0,
-    600 : #efeba9,
-    700 : #ede8a0,
-    800 : #ebe597,
-    900 : #e7e087,
-    A100 : #ffffff,
-    A200 : #ffffff,
-    A400 : #ffffff,
-    A700 : #fffef5,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #000000,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+  50: #fdfdf6,
+  100: #fbfae7,
+  200: #f8f6d8,
+  300: #f5f2c8,
+  400: #f3f0bc,
+  500: #f1edb0,
+  600: #efeba9,
+  700: #ede8a0,
+  800: #ebe597,
+  900: #e7e087,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffffff,
+  A700: #fffef5,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
 );
 
 $md-teal: (
-    50 : #e0f2f1,
-    100 : #b3e0db,
-    200 : #80cbc4,
-    300 : #4db6ac,
-    400 : #26a69a,
-    500 : #009688,
-    600 : #008e80,
-    700 : #008375,
-    800 : #00796b,
-    900 : #006858,
-    A100 : #97ffec,
-    A200 : #64ffe3,
-    A400 : #31ffda,
-    A700 : #18ffd5,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+  50: #e0f2f1,
+  100: #b3e0db,
+  200: #80cbc4,
+  300: #4db6ac,
+  400: #26a69a,
+  500: #009688,
+  600: #008e80,
+  700: #008375,
+  800: #00796b,
+  900: #006858,
+  A100: #97ffec,
+  A200: #64ffe3,
+  A400: #31ffda,
+  A700: #18ffd5,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
 );
 
-
-
-
-
 // Color definitions
-$my-app-primary: mat-palette($md-gold);
-$my-app-accent:  mat-palette($md-teal, 500, 900, A100);
-$my-app-warn:    mat-palette($mat-deep-orange);
+$my-app-primary: mat-palette($md-teal);
+$my-app-accent: mat-palette($md-teal, 600, 900, A100);
+$my-app-warn: mat-palette($mat-deep-orange);
 
 $my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
-
-$custom-typography: mat-typography-config($font-family: '"Open Sans", sans-serif;');
+$custom-typography: mat-typography-config(
+  $font-family: '"Open Sans", sans-serif;'
+);
 @include mat-core($custom-typography);
 
 // Custom background
@@ -88,6 +85,4 @@ $background: map-get($my-app-theme, background);
 $background: map_merge($background, (background: $custom-background-color));
 $my-app-theme: map_merge($my-app-theme, (background: $background)); */
 
-
 @include angular-material-theme($my-app-theme);
-

@@ -16,7 +16,11 @@ import {
   MatPaginatorModule,
   MatButtonToggleModule,
   MatProgressBarModule,
+  MatDatepickerModule,
+  MatSelectModule,
+  MatOptionModule,
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
@@ -38,6 +42,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatProgressBarModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatSelectModule,
+    MatOptionModule,
     LayoutModule
   ],
   exports: [
@@ -56,6 +64,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatProgressBarModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatSelectModule,
+    MatOptionModule,
     LayoutModule
   ]
 })

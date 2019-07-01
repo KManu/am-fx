@@ -1,8 +1,14 @@
 <div id="buy-root">
-  <mat-toolbar>
+  <mat-toolbar color="accent">
     <span id="title">Buy GHS</span>
     <span id="toolbarButtons">
       <button mat-stroked-button (click)="getCurrencies()">Refresh Rates</button>
+      <button mat-stroked-button (click)="clearForm()">
+          Clear Form
+        </button>
+        <button mat-stroked-button (click)="submitForm(buyGHSForm.value)">
+          Submit
+        </button>
     </span>
   </mat-toolbar>
   <mat-card>
@@ -42,20 +48,11 @@
             type="number">
         </mat-form-field>
         <div>
-          <h3>Buying Rate: {{selectedRate || 0}} </h3>
-          <br>
-          <h3 color="primary"> Cedi Equivalent: {{(selectedRate * amount.value) || 0 | currency:'GHS' }}</h3>
+          <p class="formStats">- Buying Rate: {{selectedRate || 0}} </p>
+          <p class="formStats">- Cedi Equivalent: {{(selectedRate * amount.value) || 0 | currency:'GHS' }}</p>
         </div>
 
       </form>
     </mat-card-content>
-    <mat-card-actions align="right">
-      <button mat-stroked-button (click)="clearForm()">
-        Clear Form
-      </button>
-      <button mat-stroked-button (click)="submitForm(buyGHSForm.value)">
-        Submit
-      </button>
-    </mat-card-actions>
   </mat-card>
 </div>

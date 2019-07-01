@@ -1,8 +1,14 @@
 <div id="sell-root">
-  <mat-toolbar>
+  <mat-toolbar color="accent">
     <span id="title">Sell GHS</span>
     <span id="toolbarButtons">
       <button mat-stroked-button (click)="getCurrencies()">Refresh Rates</button>
+      <button mat-stroked-button (click)="clearForm()">
+          Clear Form
+        </button>
+        <button mat-stroked-button (click)="submitForm(sellGHSForm.value)">
+          Submit
+        </button>
     </span>
   </mat-toolbar>
   <mat-card>
@@ -26,36 +32,27 @@
           <input #home_country formControlName="home_country" matInput placeholder="Home Country" type="text">
         </mat-form-field>
         <mat-form-field>
-          <input #residential_address formControlName="residential_address" matInput placeholder="Residential Address" type="text">
+          <input #residential_address formControlName="residential_address" matInput placeholder="Residential Address"
+            type="text">
         </mat-form-field>
         <mat-form-field>
           <input #post_address formControlName="post_address" matInput placeholder="Post Address" type="text">
         </mat-form-field>
         <mat-form-field>
-          <select #currency formControlName="currency" matNativeControl placeholder="Currency being bought"
-            required>
-            <option *ngFor="let cur of currencies" [value]="cur.code">{{cur.name}}</option>            
+          <select #currency formControlName="currency" matNativeControl placeholder="Currency being bought" required>
+            <option *ngFor="let cur of currencies" [value]="cur.code">{{cur.name}}</option>
           </select>
         </mat-form-field>
         <mat-form-field>
-          <input #amount formControlName="amount" matInput placeholder="Amount of Currency being sold"
-            type="number">
+          <input #amount formControlName="amount" matInput placeholder="Amount of Currency being sold" type="number">
         </mat-form-field>
         <div>
-          <h3>Exchange Rate: {{ selectedRate || 0}}</h3>
-          <br>
-          <h3 color="primary"> Cedi Equivalent: {{(selectedRate * amount.value) || 0 | currency:'GHS' }}</h3>
+          <p class="formStats">- Selling Rate: {{ selectedRate || 0}}</p>
+          <p class="formStats">- Cedi Equivalent: {{(selectedRate * amount.value) || 0 | currency:'GHS' }}</p>
+
         </div>
 
       </form>
     </mat-card-content>
-    <mat-card-actions align="right">
-      <button mat-stroked-button (click)="clearForm()">
-        Clear Form
-      </button>
-      <button mat-stroked-button (click)="submitForm(sellGHSForm.value)">
-        Submit
-      </button>
-    </mat-card-actions>
   </mat-card>
 </div>

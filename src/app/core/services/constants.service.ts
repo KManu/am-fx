@@ -1,4 +1,4 @@
-const host = 'http://localhost:8001/';
+const host = 'https://api.am-fx.ml/';
 
 const URLS = {
   users : {

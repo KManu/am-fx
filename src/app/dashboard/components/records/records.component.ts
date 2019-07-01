@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { TransactionsService } from '../../../core/services/transactions.service';
@@ -39,7 +39,8 @@ const userSchema: JSONSchema = {
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
-  styleUrls: ['./records.component.scss']
+  styleUrls: ['./records.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RecordsComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -53,6 +54,7 @@ export class RecordsComponent implements OnInit, AfterViewInit, OnDestroy {
   data = [];
   dataSource = new MatTableDataSource<Transactions>();
   dataType = 'buy';
+  loading: boolean;
 
   displayedColumns = [
     'full_name',
@@ -96,22 +98,29 @@ export class RecordsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
+  refreshData(){
+    this.toggleType(this.dataType);
+  }
 
   loadTableData(type) {
     let loadingToast;
     setTimeout(() => loadingToast = this.toastr.info('Loading', '', {timeOut: 0}));
     this.storage.getItem<Users>('am-user', { schema: userSchema })
       .subscribe(user => {
+        this.loading = true;
         // get org code and get transactions for org
         this.transService.getOrgTransactions({ code: user.organisation_code, type: type }).toPromise()
           .then(res => {
             // console.log(res);
             this.toastr.clear(loadingToast.toastId);
+            this.loading = false;
             this.dataSource.data = res['data'];
+            // this.toggleType(this.dataType);
           })
           .catch(error => {
             this.toastr.clear(loadingToast.toastId);
             this.toastr.error('There was an error getting the records. Refresh and try again', 'Error');
+            this.loading = false;
           });
       });
   }

@@ -17,7 +17,7 @@ export class AccountsService {
     private localStorage: LocalStorage
   ) { }
 
-  getAccounts() {
+ /*  getAccounts() {
     return this.http.get(URLS.accounts.getAccounts)
       .pipe(
         map((res) => {
@@ -31,6 +31,6 @@ export class AccountsService {
           return throwError(err);
         })
       );
-  }
+  } */
 
 }

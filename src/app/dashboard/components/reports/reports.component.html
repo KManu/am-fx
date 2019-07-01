@@ -1,5 +1,5 @@
 <div id="reports_root">
-  <mat-toolbar>
+  <mat-toolbar color="accent">
     <span id="title">Reports</span>
     <!-- <span id="toolbarButtons">
           <button mat-stroked-button (click)="loadTableData()">Refresh</button>
@@ -17,29 +17,138 @@
             Transaction Reports
           </mat-panel-title>
           <mat-panel-description>
-            Type your name and age
+            Generate a report of transactions records for a time period.
           </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <mat-form-field>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Age">
-        </mat-form-field>
+        <div class="panelContent" id="transReportContent">
+          <div class="inputContainer">
+            <!-- Start Date -->
+            <mat-form-field>
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="transPickerStart">
+              <mat-datepicker-toggle matSuffix [for]="transPickerStart"></mat-datepicker-toggle>
+              <mat-datepicker #transPickerStart></mat-datepicker>
+            </mat-form-field>
+            <!-- End Date -->
+            <mat-form-field>
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="transPickerEnd">
+              <mat-datepicker-toggle matSuffix [for]="transPickerEnd"></mat-datepicker-toggle>
+              <mat-datepicker #transPickerEnd></mat-datepicker>
+            </mat-form-field>
+            <!-- Transaction Type -->
+            <mat-form-field>
+              <mat-label>Type Of Transaction</mat-label>
+              <mat-select>
+                <mat-option value="all">
+                  All (Combined)
+                </mat-option>
+                <mat-option value="buy">
+                  Purchases (Bought Currency)
+                </mat-option>
+                <mat-option value="sell">
+                  Sales (Sold Currency)
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="actionContainer">
+            <button mat-stroked-button>Generate</button>
+          </div>
+        </div>
       </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Self aware panel
+            Daily Sales Reports
           </mat-panel-title>
           <mat-panel-description>
-            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            Generate a report of daily sales for a time period
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        <div class="panelContent" id="dailySalesReportContent">
+          <div class="inputContainer">
+            <!-- Start Date -->
+            <mat-form-field>
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="dailyPickerStart">
+              <mat-datepicker-toggle matSuffix [for]="dailyPickerStart"></mat-datepicker-toggle>
+              <mat-datepicker #dailyPickerStart></mat-datepicker>
+            </mat-form-field>
+            <!-- End Date -->
+            <mat-form-field>
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="dailyPickerEnd">
+              <mat-datepicker-toggle matSuffix [for]="dailyPickerEnd"></mat-datepicker-toggle>
+              <mat-datepicker #dailyPickerEnd></mat-datepicker>
+            </mat-form-field>
+            <!-- Transaction Type -->
+            <mat-form-field>
+              <mat-label>Type Of Transaction</mat-label>
+              <mat-select>
+                <mat-option value="all">
+                  All (Combined)
+                </mat-option>
+                <mat-option value="buy">
+                  Purchases (Bought Currency)
+                </mat-option>
+                <mat-option value="sell">
+                  Sales (Sold Currency)
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="actionContainer">
+            <button mat-stroked-button>Generate</button>
+          </div>
+        </div>
       </mat-expansion-panel>
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Monthly Sales Reports
+            </mat-panel-title>
+            <mat-panel-description>
+              Generate a report of monthly sales for a time period
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="panelContent" id="monthlySalesReportContent">
+            <div class="inputContainer">
+              <!-- Start Date -->
+              <mat-form-field>
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="monthlyPickerStart">
+                <mat-datepicker-toggle matSuffix [for]="monthlyPickerStart"></mat-datepicker-toggle>
+                <mat-datepicker #monthlyPickerStart></mat-datepicker>
+              </mat-form-field>
+              <!-- End Date -->
+              <mat-form-field>
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="monthlyPickerEnd">
+                <mat-datepicker-toggle matSuffix [for]="monthlyPickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #monthlyPickerEnd></mat-datepicker>
+              </mat-form-field>
+              <!-- Transaction Type -->
+              <mat-form-field>
+                <mat-label>Type Of Transaction</mat-label>
+                <mat-select>
+                  <mat-option value="all">
+                    All (Combined)
+                  </mat-option>
+                  <mat-option value="buy">
+                    Purchases (Bought Currency)
+                  </mat-option>
+                  <mat-option value="sell">
+                    Sales (Sold Currency)
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="actionContainer">
+              <button mat-stroked-button>Generate</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
     </mat-accordion>
   </div>
 </div>

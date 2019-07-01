@@ -1,6 +1,6 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
+@import "~@swimlane/ngx-datatable/release/assets/icons.css";
 
 #dashboard-root {
   height: 100%;
@@ -35,8 +35,8 @@
         /* background: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.7));
         background: #662d91; */
 
-        a, mat-icon {
-          color: whitesmoke;
+        mat-list > mat-list-item > div >  mat-icon{
+          color: teal !important;    
         }
       }
 
