@@ -19,14 +19,6 @@ export class LoginService {
 
 
   login(payload) {
-    /* {username: "admin", password: "12345"} */
-    /* if (payload.username === 'admin' && payload.password === '12345') {
-      return of({ user: 'admin' });
-    } else if (payload.username === 'kwaku' && payload.password === 'abcde') {
-      return of({ user: 'teller' });
-    } else {
-      return throwError(false);
-    } */
     let user;
     return this.http.post(URLS.users.login, payload)
       .pipe(
@@ -35,7 +27,7 @@ export class LoginService {
           if (res['status'] === false) {
             throwError(false);
           } else {
-            user = res['data'][0];
+            user = res['data'];
             return res;
           }
         }),
@@ -47,7 +39,7 @@ export class LoginService {
         }),
         map(res => {
           return {
-            org: user.organisation_code || '',
+            org: user.organisation || '',
             role: user.role || ''
           };
         }),

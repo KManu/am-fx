@@ -46,7 +46,16 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         next => {
           console.log('Login res: ', next);
-          if (next.org === '' || next.role === '') {
+
+          if (next.role === 'app-admin') {
+            // am login
+            this.router.navigate(['/', 'am-dash']);
+          } else if (next.role === 'org-admin') {
+            this.router.navigate(['/', 'dashboard']);
+          } else {
+            this.router.navigate(['/', 'emp-dashboard']);
+          }
+          /* if (next.org === '' || next.role === '') {
             // throw
             this.toastr.error('Login failed.');
           } else if (next.org === 'kuSfwu24t') {
@@ -63,7 +72,7 @@ export class LoginPageComponent implements OnInit {
             } else if (next.role !== 'admin') {
               this.router.navigate(['/', 'emp-dashboard']);
             }
-          }
+          } */
           /* if (next.user === 'admin') {
             this.toastr.success('Login Successful', '');
             this.router.navigate(['/', 'dashboard']);

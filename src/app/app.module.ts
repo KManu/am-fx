@@ -28,8 +28,7 @@ import { DashboardSharedModule } from './dashboard-shared/dashboard-shared.modul
     CoreModule.forRoot(),
     SharedModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-bottom-left',
       preventDuplicates: true,
     }),
     LoginModule,

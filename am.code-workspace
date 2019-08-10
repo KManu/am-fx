@@ -6,5 +6,10 @@
 		{
 			"path": "C:\\Users\\Manu\\Documents\\Personal\\am-fx-nodeEnd"
 		}
-	]
+	],
+	"settings": {
+		"editor.tabSize": 2,
+		"editor.wordWrap": "on",
+		"debug.node.autoAttach": "off"
+	}
 }

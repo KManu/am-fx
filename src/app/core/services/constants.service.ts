@@ -1,7 +1,13 @@
-const host = 'https://api.am-fx.ml/';
+import { environment } from '../../../environments/environment';
+
+let host = 'http://localhost:8001/';
+if (environment.production === true) {
+    host = 'https://api.am-fx.ml/';
+}
+
 
 const URLS = {
-  users : {
+  users: {
     login: host + 'users/login',
     create: host + 'users/create'
   },

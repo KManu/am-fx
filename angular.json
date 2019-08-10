@@ -28,7 +28,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/theme.scss"
+              "src/theme.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/luna-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
