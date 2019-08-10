@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 
 // External Libs
 import { ToastrModule } from 'ngx-toastr';
-import { DashboardSharedModule } from './dashboard-shared/dashboard-shared.module';
+import { DashboardSharedModule } from './dash-shared/dashboard-shared.module';
 
 @NgModule({
   declarations: [

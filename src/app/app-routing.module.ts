@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login/components/login-page/login-page.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -17,18 +16,18 @@ const routes: Routes = [
     component: LoginPageComponent
   },
   {
-    path: 'am-dash',
-    loadChildren: './am-dash/am-dash.module#AmDashModule'
+    path: 'admin-dash',
+    loadChildren: './admin-dash/admin-dash.module#AdminDashModule'
     // canActivate: [RGuardService]
   },
   {
-    path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    path: 'root-dash',
+    loadChildren: './root-dash/root-dash.module#RootDashModule'
     // canActivate: [RGuardService]
   },
   {
-    path: 'emp-dashboard',
-    loadChildren: './emp-dashboard/emp-dashboard.module#EmpDashboardModule'
+    path: 'user-dash',
+    loadChildren: './user-dash/user-dash.module#UserDashModule'
     // canActivate: [RGuardService]
   },
   {
@@ -42,4 +41,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
