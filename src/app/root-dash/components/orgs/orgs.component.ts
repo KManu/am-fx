@@ -29,6 +29,7 @@ export class OrgsComponent implements OnInit {
     this.orgService
       .getOrganisations()
       .then(data => {
+        console.log(data);
         this.dataSource.data = data['data'];
       })
       .catch(error => {

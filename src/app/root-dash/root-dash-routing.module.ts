@@ -5,6 +5,7 @@ import { RegisterUserComponent } from './components/add-user/add-user.component'
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { OrgsComponent } from './components/orgs/orgs.component';
 import { UsersComponent } from './components/users/users.component';
+import { AddOrgComponent } from './components/add-org/add-org.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'add-admin',
         component: AddAdminComponent
+      },
+      {
+        path: 'add-org',
+        component: AddOrgComponent
       },
       {
         path: 'organisations',

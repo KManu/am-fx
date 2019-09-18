@@ -9,6 +9,7 @@ import { RegisterUserComponent } from './components/add-user/add-user.component'
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { OrgsComponent } from './components/orgs/orgs.component';
 import { UsersComponent } from './components/users/users.component';
+import { AddOrgComponent } from './components/add-org/add-org.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UsersComponent } from './components/users/users.component';
     RegisterUserComponent,
     AddAdminComponent,
     OrgsComponent,
-    UsersComponent
+    UsersComponent,
+    AddOrgComponent
   ],
   imports: [CommonModule, AmDashRoutingModule, DashMaterialModule, ReactiveFormsModule]
 })

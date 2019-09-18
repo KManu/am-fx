@@ -73,7 +73,7 @@ export class OrgsDataService {
     return new Promise((resolve, reject) => {
       this.getOrganisationsRequest()
         .then(next => {
-          resolve(next);
+          resolve(next['data'] || []);
         })
         .catch(error => {
           reject(error);

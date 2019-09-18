@@ -1,11 +1,11 @@
-#register_user_root {
+#register_org_root {
   min-height: 100%;
   height: 100%;
 
   #mainContent {
       height: 100%;
 
-      #userForm{
+      #orgForm{
           display: flex;
           flex-direction: column;
           flex-wrap: nowrap;

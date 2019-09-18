@@ -33,7 +33,7 @@ export class OrganisationsService {
   createOrganisationRequest(payload) {
     const url = URLS.organisation.createOrganisation;
     return this.http
-      .post(url, { organisation: payload })
+      .post(url, { org: payload })
       .pipe(
         retry(3),
         map(res => {
@@ -79,5 +79,18 @@ export class OrganisationsService {
           reject(error);
         });
     });
+  }
+
+  getOrgNameAndCode() {
+    return this.http
+      .get(URLS.organisation.getNameAndCodes)
+      .pipe(
+        retry(3),
+        map(e => {
+          return e;
+        }),
+        catchError(this.handleError)
+      )
+      .toPromise();
   }
 }

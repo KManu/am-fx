@@ -1,3 +1,69 @@
-<p>
-  register-user works!
-</p>
+<div id="register_user_root">
+  <mat-toolbar>
+    <span id="title">Register a User</span>
+  </mat-toolbar>
+
+  <div id="mainContent">
+    <mat-card>
+      <form [formGroup]="userForm" id="userForm">
+        <mat-form-field appearance="standard">
+          <mat-label>Organisation</mat-label>
+          <mat-select formControlName="organisation">
+            <mat-option *ngFor="let org of orgs" [value]="org">
+              {{org.name | titlecase}} - {{org.code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" >
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{role | titlecase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input matInput placeholder="Last Name" formControlName="lastName" required />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input
+            matInput
+            placeholder="Other Names"
+            formControlName="otherNames"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input matInput placeholder="Email" formControlName="email" required />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input matInput placeholder="Phone" formControlName="phone" type="tel" required />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input
+            matInput
+            placeholder="Password"
+            formControlName="password"
+            type="password"
+            required
+          />
+          <mat-error *ngIf="userForm.hasError('notSame')">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input
+            matInput
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+            type="password"
+            required
+          />
+        </mat-form-field>
+        <div align="right">
+          <button (click)="submitForm()" mat-stroked-button>Submit</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
