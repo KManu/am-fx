@@ -15,13 +15,20 @@ export class RegisterUserComponent implements OnInit {
   adminForm: FormGroup;
   matcher = new MyErrorStateMatcher();
   orgs = [];
-  roles = ['admin', 'teller', 'manager', 'supervisor'];
+  roles = [
+    { value: 'app-admin',
+  description: 'An administrator for the entire system.'},
+    { value: 'org-admin',
+  description: 'An administrator for the organisation.'},
+    { value: 'org-teller',
+  description: 'A teller for an organisation.'}
+  ];
   constructor(
     private formBuilder: FormBuilder,
     private userService: UsersService,
     private orgService: OrganisationsService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getOrgs();
@@ -59,9 +66,11 @@ export class RegisterUserComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  submitForm() {
-    console.log(this.userForm.value);
-    const user = this.userForm.value || [];
+  submitForm(userForm) {
+    const user = userForm.value || [];
+    user.role = userForm.value.role.value;
+    console.log(userForm.value);
+    console.log(user);
     this.userService
       .createUser(user)
       .then(next => {

@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
     public router: Router
   ) {
     dayjs.extend(advancedFormat);
+    this.router.navigate(['/root-dash/organisations']);
   }
 
   ngOnInit() {

@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     private router: Router
   ) {
     // init outlet route
-    router.navigate(['/emp-dashboard/sell']);
+    router.navigate(['/user-dash/sell']);
   }
 
   ngOnInit() {

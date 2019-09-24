@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     public usersService: UsersService,
     public toastr: ToastrService,
     public orgService: OrganisationsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -39,16 +39,17 @@ export class UsersComponent implements OnInit {
   }
 
   loadTableData() {
-    console.log(this.selectedOrg);
-    this.usersService
-      .getUsersByOrg(this.selectedOrg.value)
-      .then(res => {
-        console.log(res);
-        this.data = res;
-      })
-      .catch(error => {
-        this.toastr.error('Error Loading Organisation Data.');
-      });
+    this.selectedOrg.value === '' ?
+      this.toastr.warning('You have to select an organisation first.') :
+      this.usersService
+        .getUsersByOrg(this.selectedOrg.value)
+        .then(res => {
+          console.log(res);
+          this.data = res;
+        })
+        .catch(error => {
+          this.toastr.error('Error Loading Organisation Data.');
+        });
   }
 
   exportAsExcel() {

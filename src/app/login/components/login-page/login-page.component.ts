@@ -41,14 +41,18 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(data).subscribe(
       next => {
         console.log('Login res: ', next);
+        this.toastr.success('Login successful.');
 
         if (next.role === 'app-admin') {
           // root login
           this.router.navigate(['/', 'root-dash']);
         } else if (next.role === 'org-admin') {
           this.router.navigate(['/', 'admin-dash']);
-        } else {
+        } else if ( next.role === 'org-teller') {
           this.router.navigate(['/', 'user-dash']);
+        } else {
+          this.toastr.error(' Kindly check your credentials and try again.', 'Login failed.');
+
         }
         /* if (next.org === '' || next.role === '') {
             // throw

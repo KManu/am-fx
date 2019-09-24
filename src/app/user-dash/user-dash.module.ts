@@ -14,9 +14,10 @@ import { AccountsService } from './services/accounts.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SellComponent } from './components/sell/sell.component';
 import { BuyComponent } from './components/buy/buy.component';
+import { RecordsComponent } from './components/records/records.component';
 
 @NgModule({
-  declarations: [DashboardComponent, SellComponent, BuyComponent],
+  declarations: [DashboardComponent, SellComponent, BuyComponent, RecordsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
