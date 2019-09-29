@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URLS } from './constants.service';
 import { retry, map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,30 @@ export class TransactionsService {
     public http: HttpClient
   ) { }
 
+  errorHandler(title = 'Failed', text = 'There was an error. Wait a moment and try again.') {
+    return of({
+      status: false,
+      title: title,
+      message: text
+    });
+  }
+
+
   public createTransaction(payload) {
-    return this.http.post(URLS.transactions.create, payload)
+    return this.http.post(URLS.currencyPairs.create, {transaction: payload})
       .pipe(
-        retry(3),
-        map(res => {
-          console.log('Response on create transaction: ', res);
+        map((res) => {
+          return {
+            status: res['status'] || true,
+            title: 'Successful',
+            data: res['data']
+          };
         }),
-        catchError(err => {
-          return throwError(err);
+        catchError((err: any) => {
+          console.log('Login http Error: ', err.error);
+          return this.errorHandler('Network Error', err.message);
         })
-      ).toPromise();
+      ).toPromise().then(res => res);
   }
 
   public getOrgTransactions(payload) {

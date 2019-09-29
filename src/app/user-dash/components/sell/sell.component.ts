@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import * as moment from 'moment';
-import { map } from 'rxjs/operators';
+import { CurrenciesService } from '../../../dash-shared/services/currencies.service';
+import { KEYS } from '../../../core/services/constants.service';
+import { CustomersService } from 'src/app/dash-shared/services/customers.service';
+import { TransactionsService } from 'src/app/core/services/transactions.service';
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-sell',
@@ -11,7 +14,14 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./sell.component.scss']
 })
 export class SellComponent implements OnInit {
+
+  @ViewChild('stepper') stepper: MatStepper;
+
   public sellGHSForm: FormGroup;
+  public newCustomerForm: FormGroup;
+  public existingCustomerForm: FormGroup;
+
+  public customerDetails;
 
   currencyRate = 0;
   rates = {
@@ -23,83 +33,136 @@ export class SellComponent implements OnInit {
     cfa: 0.008,
     sw_fr: 4.9
   };
+  currencyPairs = [];
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private localStorage: LocalStorage
+    private localStorage: LocalStorage,
+    private currencyService: CurrenciesService,
+    private customerService: CustomersService,
+    private transactionService: TransactionsService
   ) { }
 
   ngOnInit() {
     this.formInit();
+    this.getCurrencyPairs();
   }
 
   formInit() {
+    // new customer form
+    this.newCustomerForm = this.formBuilder.group({
+      category: ['', Validators.compose([
+        Validators.required
+      ])],
+      name: ['', Validators.compose([
+        Validators.required
+      ])],
+      idType: ['', Validators.compose([
+        Validators.required
+      ])],
+      idNumber: ['', Validators.compose([
+        Validators.required
+      ])],
+      nationality: ['', Validators.compose([
+        Validators.required
+      ])],
+      residentialAddress: ['', Validators.compose([
+        Validators.required
+      ])]
+    });
+
     this.sellGHSForm = this.formBuilder.group({
-      firstNameControl: ['', Validators.compose([
-        Validators.required,
-      ])],
-      lastNameControl: ['', Validators.compose([
+      currencyPair: ['', Validators.compose([
         Validators.required
       ])],
-      IDTypeControl: ['', Validators.compose([
-        Validators.required
-      ])],
-      IDNumberControl: ['', Validators.compose([
-        Validators.required
-      ])],
-      currencyControl: ['', Validators.compose([
-        Validators.required
-      ])],
-      amountControl: ['', Validators.compose([
+      amount: ['', Validators.compose([
         Validators.required
       ])],
     });
 
+    this.existingCustomerForm = this.formBuilder.group({
+      code: ['', Validators.required],
+      idType: ['', Validators.required],
+      idNumber: ['', Validators.required]
+    });
+
   }
 
-  clearForm() {
+  clearSellForm() {
     this.sellGHSForm.reset();
   }
 
-  submitForm(formValues) {
-    console.log(formValues);
-    // store in LS
-    /*  [
-           {
-             date: [transactions]
-           },
-           {
-             date: [transactions]
-           }
-         ]
-     */
-    formValues['time'] = moment().format();
-    formValues['type'] = 'sale';
-    this.localStorage.getUnsafeItem('am-fx-records')
-      .pipe(
-        map(result => {
-          if (result) {
-            console.log('The key exists :)');
-            // add transaction to the current data
-            result.push(formValues);
-            return this.localStorage.setItem('am-fx-records', result);
-          } else {
-            console.log('The key does not exist :(');
-            // create records object and commit first transaction
-            const records = [formValues];
-            return this.localStorage.setItem('am-fx-records', records);
-          }
-        })
-      )
-      .subscribe(
-        (result) => {
-          console.log(result);
-          this.toastr.success('Record stored successfully', 'Success');
-        },
-        (error) => {
-          console.log('error storing data: ', error);
-          this.toastr.error('There was an error while storing the data', 'Error');
-        });
+  getCurrencyPairs() {
+    return this.localStorage
+      .getItem(KEYS.userData).toPromise()
+      .then((userData: any) => {
+        const user = {
+          _id: userData._id,
+          org: userData.organisation._id,
+        };
+        return this.currencyService.getCurrencyPairsByOrg(user);
+      })
+      .then((res: any) => {
+        if (res.status === true) {
+          this.currencyPairs = res.data;
+        } else {
+          this.toastr.warning(res.message, res.title);
+        }
+
+
+      })
+      .catch((error) => {
+        this.toastr.error('Could not get currencies', 'Error');
+      });
+  }
+
+  createCustomer(customerDetails) {
+    this.localStorage.getItem(KEYS.userData).toPromise()
+      .then((userdata: any) => {
+        customerDetails.org = userdata.organisation._id;
+        customerDetails.creator = userdata._id;
+        this.customerService.createCustomer(customerDetails);
+      })
+      .then((res: any) => {
+        if (res.status === true) {
+          this.customerDetails = res.data;
+          // signal customer creation complete
+          this.stepper.next();
+        }
+      })
+      .catch(error => {
+        this.toastr.error(error.message || 'Error creating customer', error.title || 'Error');
+      });
+  }
+
+  getCustomerDetails(payload) {
+    this.localStorage.getItem(KEYS.userData).toPromise()
+      .then((userdata: any) => {
+        payload.org = userdata.organisation._id;
+        payload.creator = userdata._id;
+        return this.customerService.getCustomerDetailsById(payload);
+      })
+      .then((res: any) => {
+        if (res.status === true) {
+          this.customerDetails = res.data;
+          this.stepper.next();
+        }
+      })
+      .catch(error => {
+        this.toastr.error(error.message || 'Error creating customer', error.title || 'Error');
+      });
+  }
+
+  submitTransactionForm() {
+    this.transactionService.createTransaction(this.sellGHSForm)
+      .then((res: any) => {
+        if (res.status === true) {
+          this.toastr.success('', res.title);
+        } else {
+          this.toastr.error('', 'Failed');
+        }
+      });
+
   }
 
 }

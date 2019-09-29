@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { throwError, of } from 'rxjs';
 import { map, catchError, retry, flatMap, switchMap } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { URLS } from '../../../core/services/constants.service';
+import { URLS, KEYS } from '../../../core/services/constants.service';
 import { StateService } from '../../../core/services/state.service';
 
 @Injectable({
@@ -29,10 +29,10 @@ export class LoginService {
         }
       }),
       switchMap(res => {
-        return this.localStorage.setItem('am-token', res['token']);
+        return this.localStorage.setItem(KEYS.authToken, res['token']);
       }),
       switchMap(res => {
-        return this.localStorage.setItem('am-user', user);
+        return this.localStorage.setItem(KEYS.userData, user);
       }),
       map(res => {
         return {

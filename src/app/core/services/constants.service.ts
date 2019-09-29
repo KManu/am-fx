@@ -24,12 +24,28 @@ const URLS = {
     getByOrg: host + 'currencies/getByOrg',
     upsert: host + 'currencies/upsert'
   },
+  currencyPairs: {
+    create: host + 'currency-pairs/create',
+    getAll: host + 'currency-pairs/getAll',
+    getByOrg: host + 'currency-pairs/getByOrg'
+  },
   transactions: {
     create: host + 'transactions/create',
     getOrgTransactions: host + 'transactions/getOrgTransactions',
     getUserTransactions: host + 'transactions/getByID',
     delete: host + 'transactions/delete'
+  },
+  customers: {
+    create: host + 'customer/upsert',
+    getByCode: host + 'customer/getByCode',
+    getByOrg: host + 'customer/getByOrg',
+    getByID: host + 'customer/getById'
   }
 };
 
-export { URLS };
+const KEYS = {
+  userData: 'am-user',
+  authToken: 'am-token'
+};
+
+export { URLS, KEYS };

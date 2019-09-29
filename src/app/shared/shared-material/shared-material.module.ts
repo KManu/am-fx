@@ -7,7 +7,8 @@ import {
   MatCardModule,
   MatDividerModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatStepperModule
 } from '@angular/material';
 
 /* Commonly shared UI components */
@@ -21,7 +22,8 @@ import {
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +32,8 @@ import {
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
   ],
 })
 export class SharedMaterialModule { }

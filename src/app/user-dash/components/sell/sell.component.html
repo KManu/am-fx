@@ -4,56 +4,122 @@
       Sell GHS
     </mat-card-title>
     <mat-card-content>
-      <form [formGroup]="sellGHSForm">
-        <mat-form-field>
-          <input #firstNameControl formControlName="firstNameControl" matInput placeholder="First Name" type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input #lastNameControl formControlName="lastNameControl" matInput placeholder="Last Name" type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <!-- <input #IDTypeControl formControlName="IDTypeControl" matInput placeholder="ID Type"> -->
-          <select #IDTypeControl formControlName="IDTypeControl" matNativeControl placeholder="ID Type" required >
-            <option value="passport">Passport</option>
-            <option value="nationalID">National ID</option>
-            <option value="voters">Voters ID</option>
-            <option value="drivers">Drivers License</option>
-          </select>
-        </mat-form-field>
-        <mat-form-field>
-          <input #IDNumberControl formControlName="IDNumberControl" matInput placeholder="ID Number" type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <!-- <input #currencyControl formControlName="currencyControl" matInput placeholder="Currency"> -->
-          <select #currencyControl formControlName="currencyControl" matNativeControl placeholder="Currency bought"
-            required>
-            <option value="dollars">Dollars</option>
-            <option value="euros">Euros</option>
-            <option value="pounds">Pounds</option>
-            <option value="sar">South African Rand</option>
-            <option value="can">Canadian Dollars</option>
-            <option value="cfa">West African CFA Franc</option>
-            <option value="sw_fr">Swiss Franc</option>
-          </select>
-        </mat-form-field>
-        <mat-form-field>
-          <input #amountControl formControlName="amountControl" matInput placeholder="Amount of Currency Bought" type="number">
-        </mat-form-field>
-        <div>
-            <h3>Exchange Rate: {{rates[currencyControl.value]}}</h3> 
-            <br>
-            <h3> Cedis to give: {{(rates[currencyControl.value] * amountControl.value) || 0}}</h3>
-        </div>
-        
-      </form>
+
+
+      <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
+        <mat-step>
+          <ng-template matStepLabel>Select Customer Type</ng-template>
+
+          <mat-form-field>
+            <mat-select #custType placeholder="Select Customer Type">
+              <mat-option value="new">New Customer</mat-option>
+              <mat-option value="old">Existing Customer</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- New Customer Form -->
+          <form *ngIf="custType.value === 'new'" [formGroup]="newCustomerForm">
+            <mat-form-field>
+              <mat-select #category formControlName="category" placeholder="Customer Type" required>
+                <mat-option value="individual">Individual</mat-option>
+                <mat-option value="org">Organisation</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input #name formControlName="name" matInput placeholder="Name" type="text">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select #idType formControlName="idType" placeholder="ID Type" required>
+                <mat-option value="PP">Passport</mat-option>
+                <mat-option value="NAID">National ID</mat-option>
+                <mat-option value="VID">Voters ID</mat-option>
+                <mat-option value="DLIC">Drivers License</mat-option>
+                <mat-option value="NHIS">National Health Insurance</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input #idNumber formControlName="idNumber" matInput placeholder="ID Number" type="text">
+            </mat-form-field>
+            <mat-form-field>
+              <input #nationality formControlName="nationality" matInput placeholder="Nationality" type="text">
+            </mat-form-field>
+            <mat-form-field>
+              <input #residentialAddress formControlName="residentialAddress" matInput placeholder="Residential Address"
+                type="text">
+            </mat-form-field>
+
+            <div class="formOptions" align="end">
+              <button mat-button (click)="newCustomerForm.reset()">Clear Form</button>
+              <button mat-button (click)="createCustomer(newCustomerForm.value)">Submit</button>
+            </div>
+          </form>
+
+          <!-- Existing Customer Form -->
+          <form *ngIf="custType.value === 'old'" [formGroup]="existingCustomerForm">
+            <mat-form-field>
+              <input #code formControlName="code" matInput placeholder="Customer Code"
+                type="text">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select #idType formControlName="idType" placeholder="ID Type" required>
+                <mat-option value="PP">Passport</mat-option>
+                <mat-option value="NAID">National ID</mat-option>
+                <mat-option value="VID">Voters ID</mat-option>
+                <mat-option value="DLIC">Drivers License</mat-option>
+                <mat-option value="NHIS">National Health Insurance</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input #idNumber formControlName="idNumber" matInput placeholder="ID Number" type="text">
+            </mat-form-field>
+            <div>
+              <button mat-button (click)="getCustomerDetails(existingCustomerForm.value)" matStepperNext>Submit</button>
+            </div>
+          </form>
+
+        </mat-step>
+
+        <mat-step [stepControl]="sellGHSForm">
+          <ng-template matStepLabel>Enter Transaction Details</ng-template>
+
+          <form [formGroup]="sellGHSForm">
+            <mat-form-field>
+              <select #currencyPair formControlName="currencyPair" matNativeControl placeholder="Currency Pair" required>
+                <option *ngFor="let pair of currencyPairs" [value]="pair">{{pair.counter.name}}</option>
+              </select>
+            </mat-form-field>
+            <mat-form-field>
+              <input #amount formControlName="amount" matInput placeholder="Amount" type="number">
+            </mat-form-field>
+            <div>
+              <h3>Exchange Rate: {{currencyPair.value.rate }}</h3>
+              <br>
+              <h3> Cedis to give: {{(currencyPair.value.rate * amount) || 0}}</h3>
+            </div>
+
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+
+
+
+
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="clearForm()" >
+    <!-- <mat-card-actions align="end">
+      <button mat-button (click)="clearForm()">
         Clear Form
       </button>
-      <button mat-button [disabled]=sellGHSForm.invalid (click)="submitForm(sellGHSForm.value)" >
+      <button mat-button [disabled]=sellGHSForm.invalid (click)="submitForm(sellGHSForm.value)">
         Submit
       </button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </mat-card>
 </div>

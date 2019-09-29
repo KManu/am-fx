@@ -1,16 +1,22 @@
-#sell-root{
-    width: 100%;
-    height: 100%;
+#sell-root {
+  width: 100%;
+  height: 100%;
 
-    form {
-        min-width: 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: left;
+  form {
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
 
-        mat-form-field{
-          width: 30%; 
-        }
-      }
+    mat-form-field,
+    mat-card-actions,
+    .formOptions {
+      width: 40%;
+    }
+  }
+
+  mat-card-actions {
+    width: 40%;
+  }
 }
