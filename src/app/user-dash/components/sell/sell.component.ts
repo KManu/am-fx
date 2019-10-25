@@ -15,13 +15,17 @@ import { MatStepper } from '@angular/material';
 })
 export class SellComponent implements OnInit {
 
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper',) stepper: MatStepper;
 
   public sellGHSForm: FormGroup;
   public newCustomerForm: FormGroup;
   public existingCustomerForm: FormGroup;
 
   public customerDetails;
+
+  public firstStepComplete = false;
+  public secondStepComplete = false;
+  public thirdStepComplete = false;
 
   currencyRate = 0;
   rates = {
@@ -47,6 +51,7 @@ export class SellComponent implements OnInit {
     this.formInit();
     this.getCurrencyPairs();
   }
+
 
   formInit() {
     // new customer form
@@ -116,17 +121,20 @@ export class SellComponent implements OnInit {
       });
   }
 
-  createCustomer(customerDetails) {
-    this.localStorage.getItem(KEYS.userData).toPromise()
+  async createCustomer(customerDetails) {
+    this.toastr.info('Please wait.');
+    await this.localStorage.getItem(KEYS.userData).toPromise()
       .then((userdata: any) => {
         customerDetails.org = userdata.organisation._id;
         customerDetails.creator = userdata._id;
-        this.customerService.createCustomer(customerDetails);
+        return this.customerService.createCustomer(customerDetails);
       })
       .then((res: any) => {
+        console.log(res);
         if (res.status === true) {
           this.customerDetails = res.data;
           // signal customer creation complete
+          this.firstStepComplete = true;
           this.stepper.next();
         }
       })
@@ -135,16 +143,19 @@ export class SellComponent implements OnInit {
       });
   }
 
-  getCustomerDetails(payload) {
-    this.localStorage.getItem(KEYS.userData).toPromise()
+  async getCustomerDetails(payload) {
+    this.toastr.info('Please wait.');
+    await this.localStorage.getItem(KEYS.userData).toPromise()
       .then((userdata: any) => {
         payload.org = userdata.organisation._id;
         payload.creator = userdata._id;
         return this.customerService.getCustomerDetailsById(payload);
       })
       .then((res: any) => {
+        console.log(res);
         if (res.status === true) {
           this.customerDetails = res.data;
+          this.firstStepComplete = true;
           this.stepper.next();
         }
       })

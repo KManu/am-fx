@@ -3,16 +3,16 @@
   height: 100%;
 
   form {
+    width: 66%;
     min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: left;
 
     mat-form-field,
     mat-card-actions,
     .formOptions {
-      width: 40%;
+      width: 50%;
     }
   }
 

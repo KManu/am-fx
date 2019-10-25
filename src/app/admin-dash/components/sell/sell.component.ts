@@ -83,8 +83,8 @@ export class SellComponent implements OnInit {
       .then(res => {
         return this.currenciesService.getCurrenciesByOrg(res);
       })
-      .then(data => {
-        this.currencies = data;
+      .then((data:any) => {
+        this.currencies = data.data;
         this.rates = data.map(e => {
           return e.selling_rate;
         });

@@ -7,7 +7,7 @@
 
 
       <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
-        <mat-step>
+        <mat-step [completed]="firstStepComplete">
           <ng-template matStepLabel>Select Customer Type</ng-template>
 
           <mat-form-field>
@@ -71,14 +71,14 @@
             <mat-form-field>
               <input #idNumber formControlName="idNumber" matInput placeholder="ID Number" type="text">
             </mat-form-field>
-            <div>
-              <button mat-button (click)="getCustomerDetails(existingCustomerForm.value)" matStepperNext>Submit</button>
+            <div class="formOptions">
+              <button mat-button (click)="getCustomerDetails(existingCustomerForm.value)" >Get details</button>
             </div>
           </form>
 
         </mat-step>
 
-        <mat-step [stepControl]="sellGHSForm">
+        <mat-step [completed]="secondStepComplete">
           <ng-template matStepLabel>Enter Transaction Details</ng-template>
 
           <form [formGroup]="sellGHSForm">
@@ -95,11 +95,13 @@
               <br>
               <h3> Cedis to give: {{(currencyPair.value.rate * amount) || 0}}</h3>
             </div>
-
+            <div class="formOptions">
+              <button mat-button (click)="getCustomerDetails(existingCustomerForm.value)" matStepperNext> Submit</button>
+            </div>
           </form>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
+          <ng-template matStepLabel></ng-template>
           You are now done.
           <div>
             <button mat-button matStepperPrevious>Back</button>

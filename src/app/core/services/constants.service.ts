@@ -36,7 +36,8 @@ const URLS = {
     delete: host + 'transactions/delete'
   },
   customers: {
-    create: host + 'customer/upsert',
+    create: host + 'customer/create',
+    upsert: host + 'customer/upsert',
     getByCode: host + 'customer/getByCode',
     getByOrg: host + 'customer/getByOrg',
     getByID: host + 'customer/getById'

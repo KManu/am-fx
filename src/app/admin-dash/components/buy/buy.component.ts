@@ -85,7 +85,7 @@ export class BuyComponent implements OnInit, OnDestroy {
       .then(res => {
         return this.currenciesService.getCurrenciesByOrg(res);
       })
-      .then(data => {
+      .then((data: any) => {
         this.currencies = data;
         this.rates = data.map(e => {
           return e.buying_rate;
