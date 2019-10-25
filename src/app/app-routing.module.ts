@@ -17,22 +17,22 @@ const routes: Routes = [
   },
   {
     path: 'admin-dash',
-    loadChildren: './admin-dash/admin-dash.module#AdminDashModule'
+    loadChildren: () => import('./admin-dash/admin-dash.module').then(m => m.AdminDashModule)
     // canActivate: [RGuardService]
   },
   {
     path: 'root-dash',
-    loadChildren: './root-dash/root-dash.module#RootDashModule'
+    loadChildren: () => import('./root-dash/root-dash.module').then(m => m.RootDashModule)
     // canActivate: [RGuardService]
   },
   {
     path: 'user-dash',
-    loadChildren: './user-dash/user-dash.module#UserDashModule'
+    loadChildren: () => import('./user-dash/user-dash.module').then(m => m.UserDashModule)
     // canActivate: [RGuardService]
   },
   {
     path: 'sign-up',
-    loadChildren: './sign-up/sign-up.module#SignUpModule'
+    loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule)
     // canActivate: [RGuardService]
   }
 ];
