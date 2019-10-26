@@ -15,7 +15,7 @@ import { MatStepper } from '@angular/material';
 })
 export class SellComponent implements OnInit {
 
-  @ViewChild('stepper',) stepper: MatStepper;
+  @ViewChild('stepper', { static: true }) stepper: MatStepper;
 
   public sellGHSForm: FormGroup;
   public newCustomerForm: FormGroup;

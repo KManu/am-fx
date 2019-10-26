@@ -44,9 +44,9 @@ const userSchema: JSONSchema = {
 })
 export class RecordsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('tableWrapper') table: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('tableWrapper', { static: true }) table: ElementRef;
 
   searchSubject: Subject<string> = new Subject();
   subs = new Subscription();

@@ -12,8 +12,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('tableWrapper') table: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('tableWrapper', { static: true }) table: ElementRef;
 
   data = [];
   orgs = [];

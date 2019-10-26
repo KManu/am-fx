@@ -10,8 +10,8 @@ import * as xlsx from 'xlsx';
   styleUrls: ['./orgs.component.scss']
 })
 export class OrgsComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('tableWrapper') table: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('tableWrapper', { static: true }) table: ElementRef;
 
   data = [];
   dataSource = new MatTableDataSource<Organisations>();
