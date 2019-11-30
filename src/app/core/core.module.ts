@@ -7,6 +7,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Services
 import { StateService } from './services/state.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 // Externals
 
@@ -14,7 +17,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SidenavComponent, FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
   ],
