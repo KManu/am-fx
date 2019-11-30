@@ -20,6 +20,7 @@ const URLS = {
     getNameAndCodes: host + 'orgs/getCodeList'
   },
   currencies: {
+    create: host + 'currencies/create',
     get: host + 'currencies/get',
     getByOrg: host + 'currencies/getByOrg',
     upsert: host + 'currencies/upsert'

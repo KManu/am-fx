@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { TransactionsService } from '../../../core/services/transactions.service';
 import * as xlsx from 'xlsx';
 import { LocalStorage, JSONSchema } from '@ngx-pwa/local-storage';

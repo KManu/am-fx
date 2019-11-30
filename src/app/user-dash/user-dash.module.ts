@@ -11,7 +11,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountsService } from './services/accounts.service';
 
 // Externals
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SellComponent } from './components/sell/sell.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { RecordsComponent } from './components/records/records.component';
@@ -22,10 +21,9 @@ import { RecordsComponent } from './components/records/records.component';
     CommonModule,
     DashboardRoutingModule,
     DashMaterialModule,
-    NgxDatatableModule,
     ReactiveFormsModule
   ],
-  exports: [DashboardComponent, NgxDatatableModule],
+  exports: [DashboardComponent],
   providers: [AccountsService]
 })
 export class UserDashModule {}

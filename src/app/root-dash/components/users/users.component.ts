@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import * as xlsx from 'xlsx';
 import { UsersService } from '../../services/users.service';
 import { OrganisationsService } from '../../services/organisations.service';

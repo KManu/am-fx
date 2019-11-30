@@ -7,7 +7,7 @@
 
 
       <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
-        <mat-step [completed]="firstStepComplete">
+        <mat-step [stepControl]="custType.value === 'new'? newCustomerForm : existingCustomerForm">
           <ng-template matStepLabel>Select Customer Type</ng-template>
 
           <mat-form-field>
@@ -78,33 +78,45 @@
 
         </mat-step>
 
-        <mat-step [completed]="secondStepComplete">
+        <mat-step [stepControl]="sellGHSForm">
           <ng-template matStepLabel>Enter Transaction Details</ng-template>
 
           <form [formGroup]="sellGHSForm">
             <mat-form-field>
-              <select #currencyPair formControlName="currencyPair" matNativeControl placeholder="Currency Pair" required>
-                <option *ngFor="let pair of currencyPairs" [value]="pair">{{pair.counter.name}}</option>
+              <select formControlName="currencyPair" matNativeControl placeholder="Foreign Currency" required>
+                <option *ngFor="let pair of currencyPairs" [ngValue]="pair">{{pair.counter.name}}</option>
               </select>
             </mat-form-field>
             <mat-form-field>
               <input #amount formControlName="amount" matInput placeholder="Amount" type="number">
             </mat-form-field>
             <div>
-              <h3>Exchange Rate: {{currencyPair.value.rate }}</h3>
-              <br>
-              <h3> Cedis to give: {{(currencyPair.value.rate * amount) || 0}}</h3>
+              <h3>Exchange Rate: {{sellGHSForm.get('currencyPair').value.rate }}</h3>
+              <h3> To Dispense: GHS
+                {{sellGHSForm.get('currencyPair').value.rate * sellGHSForm.get('amount').value | number:'1.2-2'}}
+              </h3>
             </div>
             <div class="formOptions">
-              <button mat-button (click)="getCustomerDetails(existingCustomerForm.value)" matStepperNext> Submit</button>
+              <button mat-flat-button (click)="submitTransactionForm()"
+                > Submit</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel></ng-template>
-          You are now done.
+          <div id="resultContainer" *ngIf="thirdStepComplete">
+            <p>The transaction was completed successfully</p>
+            <mat-divider></mat-divider>
+            <p>Receipt Number: {{transactionReport.receiptID || ''}} </p>
+            <p>Transaction Time: {{transactionReport.created_at | date:'medium'}}</p>
+            <p>Customer Name: {{transactionReport.customer.name || ''}}</p>
+            <p>Customer Type: {{transactionReport.customer.type || ''}}</p>
+            <p>Cedis Bought: GHS {{(transactionReport.currencyPair.rate * transactionReport.amount) || ''}}</p>
+            <p>Currency Received: {{transactionReport.currencyPair.counter.name || ''}}</p>
+            <p>Amount Received: {{transactionReport.amount || ''}}</p>
+            <p>Rate: {{transactionReport.currencyPair.rate || '' }}</p>
+          </div>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </mat-step>
