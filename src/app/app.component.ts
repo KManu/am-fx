@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  loggedIn: Observable<boolean>;
   title = 'ExHub';
+
+  constructor() {
+    this.loggedIn = new Observable((observer) => { observer.next(true)});
+  }
 }

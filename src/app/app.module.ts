@@ -14,6 +14,10 @@ import { SharedModule } from './shared/shared.module';
 // External Libs
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardSharedModule } from './dash-shared/dashboard-shared.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,14 @@ import { DashboardSharedModule } from './dash-shared/dashboard-shared.module';
     }),
     LoginModule,
     DashboardSharedModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,10 @@ const routes: Routes = [
     component: LoginPageComponent
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard.module').then(m=> m.DashboardModule)
+  },
+  {
     path: 'admin-dash',
     loadChildren: () => import('./admin-dash/admin-dash.module').then(m => m.AdminDashModule)
     // canActivate: [RGuardService]

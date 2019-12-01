@@ -140,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "fx-solution"
+  "defaultProject": "fx-solution",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

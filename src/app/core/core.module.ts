@@ -12,7 +12,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
 // Externals
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './material.module';
 
 
 
@@ -20,8 +21,15 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [SidenavComponent, FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
+    FlexLayoutModule,
+    MaterialModule
   ],
   exports: [
+    SidenavComponent,
+    FooterComponent,
+    HeaderComponent,
+    FlexLayoutModule,
+    MaterialModule
   ],
   providers: [
     StateService,
