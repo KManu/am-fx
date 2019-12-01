@@ -7,10 +7,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Services
 import { StateService } from './services/state.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-
 // Externals
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
@@ -18,16 +14,12 @@ import { MaterialModule } from './material.module';
 
 
 @NgModule({
-  declarations: [SidenavComponent, FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule
   ],
   exports: [
-    SidenavComponent,
-    FooterComponent,
-    HeaderComponent,
     FlexLayoutModule,
     MaterialModule
   ],

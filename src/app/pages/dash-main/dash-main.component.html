@@ -1,1 +1,13 @@
-<p>dash-main works!</p>
+<div id="dashMain" fxLayoutAlign="center stretch" fxLayout="column">
+  <div fxFlex fxFill>
+    <mat-sidenav-container>
+      <mat-sidenav #snav mode="side" opened>
+        Hello
+        <app-sidenav></app-sidenav>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

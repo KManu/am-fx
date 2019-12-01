@@ -46,6 +46,9 @@ import { environment } from '../environments/environment';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
+  exports:[
+    CoreModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

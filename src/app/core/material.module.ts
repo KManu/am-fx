@@ -8,8 +8,6 @@ import { MatSidenavModule } from '@angular/material';
   ],
   exports: [
     MatSidenavModule
-  ],
-  declarations: [],
-  providers: [],
+  ]
 })
 export class MaterialModule { }

@@ -3,12 +3,6 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "types": [],
-    "paths": {
-      "@core/*": ["app/core/*"],
-      "@shared/*": ["app/shared/*"],
-      "@actions/*": ["app/actions/*"],
-
-    }
   },
   "exclude": [
     "test.ts",
