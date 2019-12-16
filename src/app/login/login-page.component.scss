@@ -1,42 +1,43 @@
-:host{
+/* :host {
+  width: 100%;
+
+  #login-root {
+    height: 100%;
     width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
 
-    #login-root{
-        height: 100%;
-        width: 100%;
+    mat-toolbar {
+      align-self: flex-start;
+
+      mat-toolbar-row {
         display: flex;
+        flex-direction: row;
         flex-wrap: nowrap;
-        flex-direction: column;
-        align-items: center;
+        justify-content: space-between;
 
-        mat-toolbar{
-            align-self: flex-start;
-
-            mat-toolbar-row{
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-
-                #toolbarTitle{
-                    flex: 1;
-                    justify-self: start;
-                }
-
-                #actionContainer{
-                    justify-self:  end;
-                }
-
-            }
+        #toolbarTitle {
+          flex: 1;
+          justify-self: start;
         }
-    
-        #loginContainer{
-            height: 100%;
-            align-self: center;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+
+        #actionContainer {
+          justify-self: end;
         }
-    
+
+      }
     }
+
+    #loginContainer {
+      height: 100%;
+      align-self: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+  }
 }
+ */

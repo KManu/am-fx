@@ -18,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     CoreModule.forRoot(),
     SharedModule,
     ToastrModule.forRoot({

@@ -16,11 +16,9 @@ import { MaterialModule } from './material.module';
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     MaterialModule
   ],
   exports: [
-    FlexLayoutModule,
     MaterialModule
   ],
   providers: [
